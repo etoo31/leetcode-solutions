@@ -2,30 +2,30 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int n = temperatures.size();
-        vector <int> ans(n);
-        priority_queue<pair<int,int>>p;
+        vector <int> ans(n,0);
+        stack<pair<int,int>>st;
         for (int i = 0 ; i < n; i++)
         {
             if (i)
             {
-                solve(p ,temperatures[i] , ans  , i);
+                solve(st ,temperatures[i] , ans  , i);
             }
-            p.push({temperatures[i]*-1 , i});
+            st.push({temperatures[i] , i});
         }
         
 
         return ans;
     }
-    void solve(priority_queue<pair<int,int>>&p , int cur , vector<int>&ans , int i)
+    void solve(stack<pair<int,int>>&st , int cur , vector<int>&ans , int i)
     {
         
-        while (!p.empty()) {
-        auto x = p.top();
-        //cout << x.first << " " << x.second << endl;
-        if (cur <= (x.first*-1))
-            break;
-        ans[x.second] = i-x.second;    
-        p.pop();
+        while (!st.empty()) {
+        auto x = st.top();
+        if (cur <= x.first)
+            break;   
+        ans[x.second] = i-x.second;  
+        st.pop();
         }
+        
     }
 };
