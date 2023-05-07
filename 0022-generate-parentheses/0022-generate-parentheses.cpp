@@ -2,31 +2,29 @@ class Solution {
 private:
     vector<string>ans;
     string s;
-    int size;
 public:
     vector<string> generateParenthesis(int n) {
         s = "";
-        size = n;
-        getAll(0 , 0);
+        getAll(0 , 0 , n );
         return ans;
     }
-    void getAll(int open , int close)
+    void getAll(int open , int close , int n)
     {
-        if (open == size && close == size)
+        if (open == n && close == n)
         {
             ans.push_back(s);
             return;
         }
-        if (open < size)
+        if (open < n)
         {
             s.push_back('(');
-            getAll(open +1 , close);
+            getAll(open +1 , close , n);
             s.pop_back();
         }
         if (close < open)
         {
             s.push_back(')');
-            getAll(open, close+1);
+            getAll(open, close+1 , n);
             s.pop_back();
         }
         return;
