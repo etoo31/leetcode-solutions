@@ -5,8 +5,8 @@ public:
         int n = nums.size();
         for (int i = 0 ; i < n; i++)
         {
-            int x = ++mp[nums[i]];
-            if (x > 1)return 1;
+            //int x = ++mp[nums[i]];
+            if (++mp[nums[i]] > 1)return 1;
         }
         return 0;
     }
