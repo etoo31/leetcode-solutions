@@ -12,7 +12,7 @@ public:
         for (int i = n-1; i >= 0; i--)
         {
             double reachTime = (double)(target - v[i].first)/(double)v[i].second;
-            cout << v[i].first << " " << reachTime << endl;
+            //cout << v[i].first << " " << reachTime << endl;
             if (!st.empty() && reachTime <= st.top().second)
             {
                 continue;
