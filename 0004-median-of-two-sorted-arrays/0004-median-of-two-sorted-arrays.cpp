@@ -33,11 +33,7 @@ public:
             }
             else s = i + 1;
         }
-        if (total%2)
-        {
-            return (double)nums2[half];
-        }
-        else return (nums2[half]+nums2[half-1])/2.0;
+        return 1;
     }
     int getValue(int index , vector<int>&v)
     {
