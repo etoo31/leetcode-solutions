@@ -6,7 +6,7 @@ public:
         int s= 0 , e = nums1.size()-1;
         while (true)
         {
-            cout << s << " " << e << endl;
+            //cout << s << " " << e << endl;
             int i = (s + e) /2;
             int j = half - i - 2;
             int A1 = getValue(i , nums1);
