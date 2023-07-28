@@ -3,8 +3,8 @@ public:
     string minWindow(string s, string t) {
         int m = s.size();
         int n = t.size();
-        unordered_map<char , int>tmp;
-        unordered_map<char , int>smp;
+        map<char , int>tmp;
+        map<char , int>smp;
         int left = 0, right = 1e9;
         for (int i = 0 ; i < n; i++)
         {
