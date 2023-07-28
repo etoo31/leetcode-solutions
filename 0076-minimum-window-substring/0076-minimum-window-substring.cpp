@@ -20,14 +20,9 @@ public:
                 j++;
             }
             bool containAll = true;
-            for (char c = 'a'; c <= 'z'; c++)
+            for (auto c : tmp)
             {
-                if (smp[c] < tmp[c])
-                    containAll = false;
-            }
-            for (char c = 'A'; c <= 'Z'; c++)
-            {
-                if (smp[c] < tmp[c])
+                if (smp[c.first] < c.second)
                     containAll = false;
             }
             if (containAll)
