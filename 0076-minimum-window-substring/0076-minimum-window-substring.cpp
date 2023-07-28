@@ -43,7 +43,7 @@ public:
         if (right - left == 1e9)return ret;
         for (int i = left; i <= right; i++)
         {
-            ret += s[i]; 
+            ret.push_back(s[i]); 
         }
         return ret;
     }
