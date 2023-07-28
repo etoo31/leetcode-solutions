@@ -3,29 +3,26 @@ public:
     string minWindow(string s, string t) {
         int m = s.size();
         int n = t.size();
-        map<char , int>tmp;
-        map<char , int>smp;
+        unordered_map<char , int>tmp;
+        unordered_map<char , int>smp;
         int left = 0, right = 1e9;
         for (int i = 0 ; i < n; i++)
         {
             tmp[t[i]]++;
         }
         int j = 0;
+        int have = 0 , need = n;
         for (int i = 0 ; i < m; i++)
         {
             smp[s[i]]++;
+            if (smp[s[i]] <= tmp[s[i]])
+                have++;
             while(j <= i && smp[s[j]] > tmp[s[j]])
             {
                 smp[s[j]]--;
                 j++;
             }
-            bool containAll = true;
-            for (auto c : tmp)
-            {
-                if (smp[c.first] < c.second)
-                    containAll = false;
-            }
-            if (containAll)
+            if (have == need)
             {
                 if (right - left > i - j)
                 {
