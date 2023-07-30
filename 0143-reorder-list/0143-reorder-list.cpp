@@ -59,11 +59,11 @@ public:
         }
         head->val = newList->val;
         head->next = newList->next;
-        while(newList != nullptr)
+        /*while(newList != nullptr)
         {
             cout << newList->val << " ";
             newList = newList->next;
-        }
+        }*/
         
         
     }
