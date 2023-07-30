@@ -11,59 +11,50 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        ListNode* ans = nullptr;
-        ListNode* pointer = new ListNode;
-        pointer->val = head->val;
-        pointer->next = head->next;
-        int counter = 0;
-        while(pointer != nullptr)
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+        while(fast != nullptr && fast->next != nullptr)
         {
-            ListNode * temp = new ListNode;
-            temp->val = pointer->val;
-            temp->next = ans;
-            ans = temp;
-            pointer = pointer->next;
-            counter++;
+            slow = slow->next;
+            fast = fast->next;
+            if (fast != nullptr && fast->next != nullptr)
+                fast = fast->next;
         }
-        bool odd = (counter%2);
-        counter = ceil(counter/2.0);
-        //cout << counter << endl
-        ListNode *newList = nullptr;
-        ListNode *p = head;
-        while(counter--)
+        ListNode* second = slow->next;
+        slow->next = nullptr;
+        ListNode*prev = nullptr;
+        while(second != nullptr)
         {
-            ListNode *temp1 = new ListNode;
-            temp1->val = p->val;
-            temp1->next = nullptr;
-            p = p->next;
-            
-            ListNode *temp2 = new ListNode;
-            temp2->val = ans->val;
-            temp2->next = nullptr;
-            ans = ans->next;
-            
-            if (newList == nullptr)
-            {
-                newList = temp1;
-                pointer = temp1;
-            }
-            else 
-            {
-                pointer->next = temp1;
-                pointer = pointer->next;
-            }
-            if (odd && counter == 0)break;
-            pointer->next = temp2;
-            pointer = pointer->next;
+            ListNode *temp = second->next;
+            second->next = prev;
+            prev = second;
+            second = temp;
+        }
+        second = prev;
+        ListNode* first= head;
+        while(first != nullptr && second != nullptr)
+        {
+            ListNode *temp1 = first->next;
+            ListNode* temp2 = second->next;
+            first->next = second;
+            second->next = temp1;
+            first = temp1;
+            second = temp2;    
             
         }
-        head->val = newList->val;
-        head->next = newList->next;
-        /*while(newList != nullptr)
+        
+        /*while(head != nullptr)
         {
-            cout << newList->val << " ";
-            newList = newList->next;
-        }*/
+            cout << head->val << " ";
+            head = head->next;
+        }
+        cout << endl;
+        while(second != nullptr)
+        {
+            cout << second->val << " ";
+            second = second->next;
+        }
+        cout << endl;*/
         
         
     }
