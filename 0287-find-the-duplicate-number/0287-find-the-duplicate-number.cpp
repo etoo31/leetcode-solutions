@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        map<int,bool>mp;
+        unordered_map<int,bool>mp;
         int n = nums.size();
         for (int i = 0 ; i < n; i++)
         {
