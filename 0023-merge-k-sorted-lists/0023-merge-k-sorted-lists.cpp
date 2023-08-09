@@ -28,6 +28,7 @@ public:
                 }
                 mergedList.push_back(mergeList(temp1,temp2));
             }
+            lists.clear();
             lists = mergedList;
         }
         return lists[0];
