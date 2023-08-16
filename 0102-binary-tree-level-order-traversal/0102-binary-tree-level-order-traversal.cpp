@@ -11,28 +11,27 @@
  */
 class Solution {
 public:
-    int n = 0;
-    vector<vector<int>>ret;
-    
     vector<vector<int>> levelOrder(TreeNode* root) {
-        getNLevels(root , 1);
-        //cout << n << endl;
-        ret = vector<vector<int>>(n);
-        dfs(root , 0);
+        vector<vector<int>>ret;
+        queue<TreeNode *>q;
+        if (root)
+            q.push(root);
+        while (!q.empty())
+        {
+            int n = q.size();
+            vector<int>v;
+            while (n--)
+            {
+                auto front = q.front();
+                q.pop();
+                v.push_back(front->val);
+                if (front->left)
+                    q.push(front->left);
+                if (front->right)
+                    q.push(front->right);
+            }
+            ret.push_back(v);
+        }
         return ret;
-    }
-    void dfs(TreeNode * curr , int i)
-    {
-        if (!curr)return;
-        ret[i].push_back(curr->val);
-        dfs(curr->left , i+1);
-        dfs(curr->right, i+1);
-    }
-    void getNLevels(TreeNode * curr , int i)
-    {
-        if (!curr)return;
-        n = max(n , i);
-        getNLevels(curr->left , i+1);
-        getNLevels(curr->right, i+1);
     }
 };
