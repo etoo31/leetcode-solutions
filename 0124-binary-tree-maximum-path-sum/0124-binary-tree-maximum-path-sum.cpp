@@ -22,10 +22,9 @@ public:
         
         int left = dfs(curr->left);
         int right = dfs(curr->right);
-        maxi = max(maxi , curr->val);
-        maxi = max(maxi , left + curr->val);
-        maxi = max(maxi , right + curr->val);
+        left = max(left , 0);
+        right = max(right , 0);
         maxi = max(left+right+curr->val , maxi);
-        return max(max(left,right)+ curr->val , curr->val);
+        return max(left,right)+ curr->val;
     }
 };
