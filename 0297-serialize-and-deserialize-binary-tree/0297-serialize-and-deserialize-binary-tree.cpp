@@ -14,7 +14,6 @@ public:
     string serialize(TreeNode* root) {
         
         string ret = getPreOrder(root);
-        cout << ret << endl;
         return ret;
     }
     // Decodes your encoded data to tree.
