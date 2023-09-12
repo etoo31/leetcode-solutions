@@ -13,11 +13,11 @@ public:
         
         preProcess(n);
         solve(0 , n);
-        for (auto g : ans){
+        /*for (auto g : ans){
             for (auto x : g)
                 cout << x << endl;
             cout << "\n\n";
-        }
+        }*/
         return ans;
     }
     void preProcess(int n)
