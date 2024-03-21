@@ -1,30 +1,30 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        if (nums.size() == 0)return 0; 
-        map<int , bool>mp;
+        if (nums.size() == 0)return 0;
+        
+        int ans = 1;
+        
+        unordered_map<int , bool>mp;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            mp[nums[i]] = true;
+        }
         for (int i = 0 ; i < nums.size(); i++)
         {
-            mp[nums[i]] = 1;
-        }
-        int ret = 1;
-        int last = -1e9-3;
-        int count = 0;
-        //cout << last << endl;
-        for (auto n : mp)
-        {
-            cout << n.first << endl;
-            if (n.first == last+1)
+            if (mp[nums[i]-1] == false)
             {
-                count++;
-                last = n.first;
-                continue;
+                int count = 1;
+                int n = nums[i]+1;
+                while (mp[n])
+                {
+                    count++;
+                    n++;
+                }
+                ans = max(ans, count);
             }
-            ret = max(count+1 , ret);
-            count = 0;
-            last = n.first;
         }
-        ret = max(count+1 , ret);
-        return ret;
+        return ans;
+        
     }
 };
