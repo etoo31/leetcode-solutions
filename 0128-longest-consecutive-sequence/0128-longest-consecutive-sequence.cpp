@@ -13,7 +13,7 @@ public:
         //cout << last << endl;
         for (auto n : mp)
         {
-            //cout << n.first << endl;
+            cout << n.first << endl;
             if (n.first == last+1)
             {
                 count++;
