@@ -1,38 +1,39 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
-        int n = nums.size();
-        vector<vector<int>>ret;
-        for (int x = 0 ; x < n; x++)
+        vector<vector<int>>ans;
+        sort(nums.begin() , nums.end());
+        
+        for (int index = 0 ;  index < nums.size(); index++)
         {
-            //cout << "x" << endl;
-            if (x && nums[x] == nums[x-1])continue;
-            int target = nums[x]*-1;
-            
-            int i = x+1, j = n-1;
+            int target = nums[index] * -1;
+            if (index && nums[index] == nums[index-1])
+                continue;
+            int i = index +1 , j = nums.size()-1;
             while (i < j)
             {
-                //cout << "i : " << i << "  j : " << j << endl; 
                 if (nums[i] + nums[j] == target)
                 {
-                    ret.push_back(vector<int>({nums[x] , nums[i] , nums[j]}));
-                    while (i < j && nums[i] == nums[i+1])
+                    vector<int>v({nums[index] , nums[i] , nums[j]});
+                    ans.push_back(v);
+                }
+                if (nums[i] + nums[j] < target){
+                    i++;
+                    while (i < j && nums[i] == nums[i-1])
                     {
                         i++;
-                        cout << "i" << endl;
                     }
-                    i++;
                 }
-                else if (nums[i] + nums[j] > target)
-                {
+                else {
                     j--;
+                    while(j > i && nums[j] == nums[j+1])
+                    {
+                        j--;
+                    }
                 }
-                else i++;
             }
-            
         }
-        return ret;
+        return ans;
         
     }
 };
