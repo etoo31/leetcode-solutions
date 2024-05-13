@@ -15,9 +15,9 @@ public:
             double b1 = getValue(j , nums2);
             double b2 = getValue(j+1 , nums2);
             
-            cout << i << " " << j << endl;
-            cout << a1 << " " << b2 << endl;
-            cout << b1 << " " << a2 << endl;
+            // cout << i << " " << j << endl;
+            // cout << a1 << " " << b2 << endl;
+            // cout << b1 << " " << a2 << endl;
             if (a1 <= b2 && b1 <= a2)
             {
                 if (total%2)
@@ -26,8 +26,8 @@ public:
             }
             if (a1 > b2)
             {
-                // e = i-1;
-                 if (e == i-1)
+               
+                  if (e == i-1)
                     e = i - 2;
                 else e = i - 1;
             }
