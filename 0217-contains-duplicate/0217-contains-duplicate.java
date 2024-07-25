@@ -1,6 +1,6 @@
 class Solution {
     public boolean containsDuplicate(int[] nums) {
-        Map<Integer, Boolean> mp = new TreeMap<>();
+        Map<Integer, Boolean> mp = new HashMap<>();
         for (int num : nums)
         {
             if (mp.containsKey(num))return true;
