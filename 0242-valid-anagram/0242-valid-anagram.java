@@ -1,26 +1,24 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-        if(s.length() != t.length())return false;
+        // If lengths are not the same, they cannot be anagrams
+        if (s.length() != t.length()) return false;
+
+        // Create a map to count the frequency of each character in string s
         Map<Character, Integer> mp = new HashMap<>();
-        for (int i = 0 ; i < s.length(); i++)
-        {
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (mp.containsKey(c))
-            {
-                mp.put(c , mp.get(c)+1);
-            }
-            else 
-                mp.put(c , 1);
+            mp.put(c, mp.getOrDefault(c, 0) + 1);
         }
-        for (int i = 0 ; i < t.length(); i++)
-        {
+
+        // Decrease the count for each character found in string t
+        for (int i = 0; i < t.length(); i++) {
             char c = t.charAt(i);
-             if (mp.containsKey(c) && mp.get(c) > 0)
-            {
-                mp.put(c , mp.get(c)-1);
+            if (!mp.containsKey(c) || mp.get(c) == 0) {
+                return false;
             }
-            else return false;
+            mp.put(c, mp.get(c) - 1);
         }
+
         return true;
     }
 }
