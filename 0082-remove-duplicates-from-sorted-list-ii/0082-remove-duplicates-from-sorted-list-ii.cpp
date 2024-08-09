@@ -16,8 +16,8 @@ public:
         while(temp != nullptr)
         {
             int val = -200;
-            cout << "last : " << last->val << endl;
-            cout << "temp: " << temp->val << endl;
+            //cout << "last : " << last->val << endl;
+            //cout << "temp: " << temp->val << endl;
             while(temp->next != nullptr && temp->val == temp->next->val)
             {
                 //cout << "i'm in" << endl;
