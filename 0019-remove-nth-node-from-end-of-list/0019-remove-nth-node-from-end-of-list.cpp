@@ -28,7 +28,6 @@ public:
         {
             if (c == n+1)
             {
-                
                 pointer->next = (pointer->next)->next;
                 break;
             }
