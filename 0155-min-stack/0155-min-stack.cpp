@@ -1,84 +1,78 @@
 class MinStack {
 private:
-    int *arr;
+    pair<int,int> *arr; //val , miniIndex
     int size;
-    int mini;
     int front;
     
 public:
     MinStack() {
-        size= 5;
-        arr = new int[5];
-        mini = 0;
+        size = 5;
+        arr = new pair<int,int>[size];
         front = -1;
+        
     }
     
     void push(int val) {
-        front++;
-        if (front == size)
+        if (front == size-1)
+        {
             extendArray();
-        arr[front] = val;
-        if (arr[mini] > arr[front])
-            mini = front;
+        }
+        if (front != -1)
+        {
+            if (arr[front].second > val)
+            {
+                arr[++front] = {val , val};
+            }
+            else
+            {
+                int mini = arr[front].second;
+                arr[++front] = {val , mini};
+                
+            }
+        }
+        else {
+            arr[++front] = {val , val};
+        }
         
     }
     void extendArray()
     {
-        int *temp = new int[size*2];
+        pair<int , int> * newArr = new pair<int , int>[size*2];
         for (int i = 0 ; i < size; i++)
         {
-            temp[i] = arr[i];
+            newArr[i] = arr[i];
         }
         size = size*2;
-        delete [] arr;
-        arr = temp;
+        pair<int , int> * temp = arr;
+        arr = newArr;
+        delete [] temp;
     }
     
     void pop() {
-        if (front < 0)
+        if (front == -1)
         {
-            cout << "can't pop";
+            cout << "Stack is empty" << endl;
         }
-        else {
-            if (mini == front)
-            {
-             calculateMin();   
-            }
-            front--;
-        };
+        front--;
     }
-    void calculateMin()
-    {
-      if ((front-1) < 0)
-      {
-          mini = 0;
-      }
-      else {
-          mini = 0;
-          for (int i = 0; i <= (front-1); i++)
-          {
-              if (arr[mini] > arr[i])
-                  mini = i;
-          }
-      }
-    }
+    
     int top() {
-        if (front < 0)
+        if (front == -1)
         {
-            cout << "there is no elements in the stack";
+            cout << "Stack is empty" << endl;
+            return 0;
         }
-        else return arr[front];
-        return -1;
+        return arr[front].first;
+        
     }
     
     int getMin() {
-        if (front < 0)
+        if (front == -1)
         {
-            cout << "no elements";
-            return -1;
+            cout << "Stack is empty" << endl;
+            return 0;
         }
-        else return arr[mini];
-        
+        return arr[front].second;
     }
 };
 
